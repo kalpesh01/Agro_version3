@@ -39,7 +39,7 @@ public class FarmerController {
 	public String addProduct(@RequestBody Farmer frmPrdct)
 	{
 			
-		System.out.println(frmPrdct.getImg());
+//		System.out.println(frmPrdct.getImg());
 		
 		frmRepo.save(frmPrdct);
 		
