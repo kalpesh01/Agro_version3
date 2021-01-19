@@ -33,6 +33,8 @@ public class FarmerController {
 		return frmRepo.findAll();
 	}
 	
+	
+	//add product
 	@PostMapping("/addProduct")
 	public String addProduct(@RequestBody Farmer frmPrdct)
 	{
@@ -45,6 +47,7 @@ public class FarmerController {
 	}
 	
 	
+	//returns all products
 	@PostMapping("/getAllProduct")
 	public List<Farmer> allProduct()
 	{
@@ -61,8 +64,5 @@ public class FarmerController {
 	{	
 		return frmRepo.getProducts(usrid);
 	}
-	
-	
-	//commented here
 	
 }

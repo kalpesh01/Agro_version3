@@ -22,7 +22,6 @@ public class Farmer {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
 	private long pid=100;
 	
 	@Column(name="pname")

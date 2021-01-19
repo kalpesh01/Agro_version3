@@ -44,13 +44,10 @@ public class UserController {
 		return "success.....";
 	}
 	
-	
 	@PostMapping("/validateUser")
 	public List<User> verifyUser(@RequestBody User usr)
-	{
-		
-		return usrRepo.verifyUserDetails(usr.getEmail(),usr.getPassword());
-		
+	{	
+		return usrRepo.verifyUserDetails(usr.getEmail(),usr.getPassword());	
 	}
 	
 	@PostMapping("/validateUserEmail")
@@ -83,21 +80,7 @@ public class UserController {
 		 
 		return "successfully updated";
 		
-//	String str=	usrRepo.updatePass(usr.getEmail(),usr.getPassword());
-	
-//	if(str != null)
-//	{
-//		String[] arr = str.split(","); 
-//		  
-//	    if(arr[3] != "")
-//	    {
-//	    	return true;
-//	    }
-//	}
-//	
-////	return usrRepo.verifyUserEmail(usr.getEmail());
-//		
-//		return false;
+
 	
 	}
 	
