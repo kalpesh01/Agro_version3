@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.agro.com.model.User;
 import com.agro.com.repository.UserRepo;
+import com.agro.com.service.UserService;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -19,69 +20,54 @@ import com.agro.com.repository.UserRepo;
 public class UserController {
 
 	@Autowired
-	private UserRepo usrRepo;
+	private UserService usrService;
 	
+	
+	@Autowired
+	private UserRepo usrRepo;
 	
 //	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/GetUsers")
 	public List<User> getUsers()
 	{
-		return usrRepo.findAll();
+		return usrService.getAllUsers();
 	}
-	
 	
 	//getuserbyid
 	@GetMapping("/GetUser")
 	public List<User> getUser(@RequestBody User usr)
 	{
-		return usrRepo.getUser(usr.getId());
+		return usrService.getUserById(usr.getId());
 	}
+	
+	
 	
 	@PostMapping("/addusr")
 	public String addUser(@RequestBody User usr)
 	{
-		usrRepo.save(usr);
-		return "success.....";
+		return usrService.addUserData(usr);
+		
 	}
 	
 	@PostMapping("/validateUser")
 	public List<User> verifyUser(@RequestBody User usr)
 	{	
-		return usrRepo.verifyUserDetails(usr.getEmail(),usr.getPassword());	
+		return usrService.validateUser(usr.getEmail(),usr.getPassword());	
 	}
 	
 	@PostMapping("/validateUserEmail")
 	public boolean verifyEmail(@RequestBody User usr)
 	{
 		
-	String str=	usrRepo.verifyUserEmail(usr.getEmail())	;
-	
-	if(str != null)
-	{
-		String[] arr = str.split(","); 
-		  
-	    if(arr[3] != "")
-	    {
-	    	return true;
-	    }
-	}
-	
-//	return usrRepo.verifyUserEmail(usr.getEmail());
-		
-		return false;
-	
+		return	usrService.verifyUserEmail(usr.getEmail())	;
+
 	}
 	
 	@PostMapping("/forgetpassword")
 	public String forgetPass(@RequestBody User usr)
 	{
 		
-		 usrRepo.updatePass(usr.getEmail(),usr.getPassword());
-		 
-		return "successfully updated";
-		
-
-	
+		return usrService.resetPass(usr.getEmail(),usr.getPassword());
 	}
 	
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.agro.com.model.Biddings;
 
 import com.agro.com.repository.BindingsRepo;
+import com.agro.com.service.BiddingService;
 import com.sun.xml.bind.v2.runtime.reflect.ListIterator;
 
 @RestController
@@ -23,49 +24,35 @@ import com.sun.xml.bind.v2.runtime.reflect.ListIterator;
 public class BiddingController {
 	
 	@Autowired
-	BindingsRepo bdngRepo;
+	BiddingService bdngservice;
 	
 	//add bid
 	@PostMapping("/addBid")
-	public String addBid(@RequestBody Biddings bdng)
+	public String addBidd(@RequestBody Biddings bdng)
 	{
-		bdngRepo.save(bdng);
+		return bdngservice.addBid(bdng);
 		
-		return "success.....";
+		
 	}
 	
 	
 	@PostMapping("/updateBid")
-	public boolean updateBid(@RequestBody Biddings bdng)
+	public boolean updateBiddDetails(@RequestBody Biddings bdng)
 	{
-	List<Biddings> bd=	bdngRepo.checkBidder(bdng.getPid(),bdng.getBuyerId());
-		if(bd.isEmpty())
-		{
-			bdngRepo.save(bdng);
-			return true;
-		}else {
-			bdngRepo.updateBid(bdng.getBuyerId(),bdng.getBid_price(),bdng.getPid());
-			return false;
-		}
-		
-		
-		
+		return bdngservice.updateBid(bdng);
 	}
 	
 	@GetMapping("/getBiddingsOnId")
 	public List<Biddings> getBidds(@RequestParam String usrid )
 	{	
-		return bdngRepo.getBidds(usrid);
+		return bdngservice.getBidds(usrid);
 	}
 	
 	//it will return highest bid
 	@GetMapping("/getHighestBid")
 	public List<Object> getHighestBid(@RequestParam long pid)
 	{	
-		return bdngRepo.getHighestBid(pid);
-		
-		
-
+		return bdngservice.getHighestBid(pid);
 	}
 	
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.agro.com.model.Farmer;
 
 import com.agro.com.repository.FarmerRepo;
+import com.agro.com.service.FarmerService;
 
 
 
@@ -22,28 +23,23 @@ import com.agro.com.repository.FarmerRepo;
 @RequestMapping("/api/product")
 public class FarmerController {
 
-	@Autowired
-	private FarmerRepo frmRepo;
 	
+	
+	@Autowired
+	private FarmerService frmService;
 	
 //	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/GetFarmerDetails")
 	public List<Farmer> getUsers()
 	{
-		return frmRepo.findAll();
+		return frmService.getAllUsers();
 	}
-	
 	
 	//add product
 	@PostMapping("/addProduct")
 	public String addProduct(@RequestBody Farmer frmPrdct)
-	{
-			
-//		System.out.println(frmPrdct.getImg());
-		
-		frmRepo.save(frmPrdct);
-		
-		return "success.....";
+	{		
+		return	frmService.addFarmerProduct(frmPrdct);
 	}
 	
 	
@@ -52,7 +48,7 @@ public class FarmerController {
 	public List<Farmer> allProduct()
 	{
 			
-		return frmRepo.findAll();
+		return frmService.getAllUsers();
 
 	}
 	
@@ -62,7 +58,7 @@ public class FarmerController {
 	@GetMapping("/getProductsUsingId")
 	public List<Farmer> getFarmerProducts(@RequestParam String usrid )
 	{	
-		return frmRepo.getProducts(usrid);
+		return frmService.getProductById(usrid);
 	}
 	
 }
