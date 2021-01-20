@@ -52,13 +52,30 @@ public class FarmerController {
 
 	}
 	
-	
+	//will search a product using Product Id
+	@GetMapping("/getProductsUsingProductId")
+	public List<Farmer> getProductByProductId(@RequestParam int pid )
+	{	
+		System.out.println(pid);
+		return frmService.getProductByPId(pid);
+	}
 	
 	//returns farmer product using userid
-	@GetMapping("/getProductsUsingId")
+	@GetMapping("/getProductsUsingFarmerId")
 	public List<Farmer> getFarmerProducts(@RequestParam String usrid )
 	{	
 		return frmService.getProductById(usrid);
 	}
 	
+	
+//	updateBid
+	
+	@PostMapping("/updateBidHighestPrice")
+	public boolean updateBidHighestPrice(@RequestBody Farmer frmPrdct)
+	{
+		
+		 frmService.updateBid(frmPrdct.getPid(),frmPrdct.getHighestBid());
+		 return true;
+		
+	}
 }

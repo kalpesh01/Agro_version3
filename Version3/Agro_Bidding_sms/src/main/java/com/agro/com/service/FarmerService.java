@@ -36,4 +36,16 @@ public class FarmerService {
 	{
 		return frmRepo.getProducts(usrid);
 	}
+	
+	
+	public List<Farmer> getProductByPId(long pid)
+	{
+		return frmRepo.getProductByProductId(pid);
+	}
+	
+	
+	public	void updateBid(long pid,double highest_bid)
+	{
+		frmRepo.updateHighestBidPrice(pid,highest_bid);
+	}
 }
