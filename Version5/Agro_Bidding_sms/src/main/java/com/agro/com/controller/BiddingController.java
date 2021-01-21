@@ -48,11 +48,7 @@ public class BiddingController {
 		return bdngservice.getHighestBid(bdng.getPid());
 	}
 	
-	
-	@PostMapping("/getBidsOnPid")
-	public List<Biddings> getAllBidsOnPrdct(@RequestBody Biddings bdng){
-		return bdngservice.getBids(bdng);
-	}
+
 	
 	
 }
