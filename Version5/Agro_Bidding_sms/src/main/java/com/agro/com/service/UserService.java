@@ -62,9 +62,9 @@ public class UserService {
 	
 	
 	
-	public String resetPass(String email,String pass)
+	public int resetPass(String email,String pass)
 	{
-		usrRepo.updatePass( email,pass);
-		return "success";
+		
+		return  usrRepo.updatePass( email,pass);
 	}
 }

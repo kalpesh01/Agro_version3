@@ -30,6 +30,7 @@ public interface BindingsRepo extends JpaRepository<Biddings, Long>{
 	@Query(value="select max(bid_price) as bid_price,buyer_id from Biddings b where b.pid=?1",nativeQuery = true)
 	public List<Object> getHighestBid(long prdctid);
 	
-	
+	@Query(value="select * from Biddings b where b.pid=?1 ORDER BY b.bid_price DESC",nativeQuery = true)
+	public List<Biddings> getProductBids(long prdctid);
 	
 }

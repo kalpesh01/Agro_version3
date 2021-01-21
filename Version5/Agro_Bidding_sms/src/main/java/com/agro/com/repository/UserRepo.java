@@ -26,7 +26,7 @@ public interface UserRepo extends JpaRepository<User, Long>{
 	@Modifying
 	@Transactional
 	@Query(value="update users u set u.password=:pass where u.email=:mail",nativeQuery = true)
-	public void updatePass(@Param(value = "mail") String mail,@Param(value = "pass") String pass);
+	public int updatePass(@Param(value = "mail") String mail,@Param(value = "pass") String pass);
 	
 	
 //	@Modifying

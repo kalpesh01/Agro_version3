@@ -64,10 +64,16 @@ public class UserController {
 	}
 	
 	@PostMapping("/forgetpassword")
-	public String forgetPass(@RequestBody User usr)
+	public boolean forgetPass(@RequestBody User usr)
 	{
-		
-		return usrService.resetPass(usr.getEmail(),usr.getPassword());
+	int res=usrService.resetPass(usr.getEmail(),usr.getPassword());
+		if(res==0) 
+		{
+			return false;
+		}else
+		{
+			return true;
+		}
 	}
 	
 }

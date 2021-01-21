@@ -58,4 +58,9 @@ public class BiddingService {
 	{	
 		return bdngRepo.getHighestBid(pid);
 	}
+	
+	
+	public List<Biddings> getBids(Biddings bdng){
+		return bdngRepo.getProductBids(bdng.getPid());
+	}
 }
