@@ -1,0 +1,94 @@
+package com.agro.com.service;
+
+
+
+import java.io.InputStream;
+import java.util.Random;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
+import org.springframework.stereotype.Service;
+
+import com.agro.com.model.SmtpMailSender;
+
+
+public class MailSender {
+
+	
+	private JavaMailSender  javaMailSender=new JavaMailSender();
+		
+		@Override
+		public void send(SimpleMailMessage... simpleMessages) throws MailException {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void send(SimpleMailMessage simpleMessage) throws MailException {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void send(MimeMessagePreparator... mimeMessagePreparators) throws MailException {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void send(MimeMessagePreparator mimeMessagePreparator) throws MailException {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void send(MimeMessage... mimeMessages) throws MailException {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void send(MimeMessage mimeMessage) throws MailException {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public MimeMessage createMimeMessage(InputStream contentStream) throws MailException {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+		@Override
+		public MimeMessage createMimeMessage() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+	};
+
+	
+	public void send(String to, String subject, SmtpMailSender  body) throws MessagingException {
+		 MimeMessage message = javaMailSender.createMimeMessage();
+		
+		 MimeMessageHelper helper;
+		 
+		 helper = new MimeMessageHelper(message, true); // true indicates
+		   
+        helper.setSubject(subject);
+        helper.setTo(to);
+        helper.setText(body.toString(), true); // true indicates html
+//continue using helper object for more functionalities like adding attachments, etc.  
+
+        javaMailSender.send(message);
+	}
+	
+	
+}

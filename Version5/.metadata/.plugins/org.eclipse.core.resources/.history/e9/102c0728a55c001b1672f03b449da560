@@ -1,0 +1,5 @@
+package com.agro.com.model;
+
+public class SmtpMailSender {
+
+}

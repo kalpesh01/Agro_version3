@@ -1,0 +1,146 @@
+package com.agro.com.model;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+
+public class SmtpMailSender {
+	
+	@Autowired
+	private JavaMailSender  javaMailSender;
+	
+	
+	private long id;
+	
+	
+	private String fname;
+	
+	
+	private String lname;
+	
+	private String email;
+	
+	
+	private String password;
+	
+	
+	private String birthdate;
+	
+	
+	private String mno;
+	
+	
+	private String type;
+
+	private String winnerId	;	
+
+	
+	
+	
+	
+			
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getFname() {
+		return fname;
+	}
+
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+
+	public String getLname() {
+		return lname;
+	}
+
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(String birthdate) {
+		this.birthdate = birthdate;
+	}
+
+	public String getMno() {
+		return mno;
+	}
+
+	public void setMno(String mno) {
+		this.mno = mno;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getWinnerId() {
+		return winnerId;
+	}
+
+	public void setWinnerId(String winnerId) {
+		this.winnerId = winnerId;
+	}
+
+			public SmtpMailSender(String toSend, Farmer fm) {
+				super();
+				this.toSend = toSend;
+				this.fm = fm;
+			}
+
+			public SmtpMailSender() {
+				super();
+			}
+			
+			
+			public void send(String to, String subject, String body) throws MessagingException {
+				 MimeMessage message = javaMailSender.createMimeMessage();
+				
+				 MimeMessageHelper helper;
+				 helper = new MimeMessageHelper(message, true); // true indicates
+				   // multipart message
+		         helper.setSubject(subject);
+		         helper.setTo(to);
+		         helper.setText(body+this.getFm(), true); // true indicates html
+		// continue using helper object for more functionalities like adding attachments, etc.  
+
+		         javaMailSender.send(message);
+			}
+			
+}

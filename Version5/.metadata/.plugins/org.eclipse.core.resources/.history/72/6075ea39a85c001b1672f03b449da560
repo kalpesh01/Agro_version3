@@ -1,0 +1,5 @@
+package com.agro.com.service;
+
+public class MailSender {
+
+}

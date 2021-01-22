@@ -1,0 +1,23 @@
+package com.agro.com.service;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+
+public class MailSender {
+
+	@Autowired
+	private JavaMailSender  javaMailSender;
+
+	
+	
+	
+	
+}

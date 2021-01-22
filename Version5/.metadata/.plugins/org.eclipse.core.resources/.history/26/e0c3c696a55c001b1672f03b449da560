@@ -1,0 +1,41 @@
+package com.agro.com.model;
+
+public class SmtpMailSender {
+			private String toSend;
+			
+			private Farmer fm;
+
+			public String getToSend() {
+				return toSend;
+			}
+
+			public void setToSend(String toSend) {
+				this.toSend = toSend;
+			}
+
+			public Farmer getFm() {
+				return fm;
+			}
+
+			public void setFm(Farmer fm) {
+				this.fm = fm;
+			}
+
+			public SmtpMailSender(String toSend, Farmer fm) {
+				super();
+				this.toSend = toSend;
+				this.fm = fm;
+			}
+
+			public SmtpMailSender() {
+				super();
+			}
+			
+			
+			
+			public void send()
+			{
+				
+			}
+			
+}
